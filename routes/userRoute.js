@@ -3,11 +3,11 @@
 
 const express = require('express');
 const router = express.Router();
-const catController = require("../controllers/catController");
+const userController = require("../controllers/userController");
 
-router.get("/", catController.cat_list_get);
+router.get("/", userController.user_list_get);
 
-router.get("/:id", catController.cat_get);
+router.get("/:id", userController.user_get);
 
 /*router.get('/cat/:id?', (req, res) => {
   console.log("cat id param: ", req.params.id);
@@ -16,15 +16,15 @@ router.get("/:id", catController.cat_get);
 
 
 router.post('/', (req, res) => {
-  res.send('From this endpoint you can ADD cats.')
+  res.send('From this endpoint you can ADD user.')
 });
 
 router.put('/', (req, res) => {
-  res.send('From this endpoint you can EDIT cats.')
+  res.send('From this endpoint you can EDIT user.')
 });
 
 router.delete('/', (req, res) => {
-  res.send('From this endpoint you can DELETE cats.')
+  res.send('From this endpoint you can DELETE user.')
 });
 
 module.exports = router;
