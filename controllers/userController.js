@@ -1,10 +1,10 @@
 'use strict';
 // catController
 const userModel = require("../models/userModel");
-
 const users = userModel.users;
 
 const user_list_get = (req, res) => {
+  console.log("Getting all users");
   res.json(users);
 };
 
