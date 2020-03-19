@@ -7,7 +7,7 @@ const catController = require("../controllers/catController");
 
 const bodyParser = require('body-parser')
 const multer = require('multer');
-const upload = multer({dest:'uploads/'});
+const upload = multer({dest:'./uploads/'});
 
 router.use(bodyParser.json()) // for parsing application/json
 router.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
