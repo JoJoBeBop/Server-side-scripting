@@ -1,5 +1,4 @@
 'use strict';
-const passport = require('passport');
 
 const users = [
   {
@@ -28,10 +27,6 @@ const getUser = (id) => {
 };
 
 const getUserLogin = (email) => {
-  console.log(email);
-
-  console.log(users);
-
   const user = users.filter((usr) => {
     if (usr.email === email) {
       console.log( usr);
@@ -40,27 +35,6 @@ const getUserLogin = (email) => {
   });
   return user[0];
 };
-// *****************
-
-// serialize: store user id in session
-passport.serializeUser((id, done) => {
-  console.log("strat");
-
-  console.log('serialize', id);
-  done(null, id);
-  // serialize user id by adding it to 'done()' callback
-});
-
-// deserialize: get user id from session and get all user data
-passport.deserializeUser(async (id, done) => {
-  const user = getUser(id);
-  done(null, user)
-  // get user data by id from getUser
-  console.log('deserialize', user);
-  // deserialize user by adding it to 'done()' callback
-});
-
-
 
 module.exports = {
   users, getUserLogin

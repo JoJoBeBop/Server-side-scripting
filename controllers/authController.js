@@ -5,7 +5,6 @@ const pass = require('../utils/pass');
 
 const login = (req, res) => {
   passport.authenticate('local', {session: false}, (err, user, info) => {
-    console.log(user + "J");
     if (err || !user) {
       console.log(err);
       return res.status(400).json({

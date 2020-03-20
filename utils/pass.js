@@ -30,41 +30,24 @@ const getUser = (id) => {
   return user[0];
 };
 
-const getUserLogin = (email) => {
-  console.log("strat");
-
-  const user = users.filter((usr) => {
-    if (usr.email === email) {
-      return usr;
-    }
-  });
-  return user[0];
-};
 // *****************
 
 // serialize: store user id in session
 passport.serializeUser((id, done) => {
-  console.log("strat");
-
-  console.log('serialize', id);
   done(null, id);
-  // serialize user id by adding it to 'done()' callback
 });
 
 // deserialize: get user id from session and get all user data
 passport.deserializeUser(async (id, done) => {
   const user = getUser(id);
   done(null, user)
-  // get user data by id from getUser
   console.log('deserialize', user);
-  // deserialize user by adding it to 'done()' callback
 });
 
 // local strategy for username password login
 passport.use(new Strategy(
   async (username, password, done) => {
     const params = username;
-    console.log(params + "P");
     try {
       const user = await userModel.getUserLogin(params);
       console.log('Local strategy', user); // result is binary row
