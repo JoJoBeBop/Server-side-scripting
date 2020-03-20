@@ -207,14 +207,22 @@ loginForm.addEventListener('submit', async (evt) => {
 // logout
 logOut.addEventListener('click', async (evt) => {
   evt.preventDefault();
+
   try {
+
     const options = {
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
       },
     };
+
+    console.log(options);
     const response = await fetch(url + '/auth/logout', options);
+/*
     const json = await response.json();
+*/
+    const json = await response;
+
     console.log(json);
     // remove token
     sessionStorage.removeItem('token');

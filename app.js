@@ -7,6 +7,8 @@ const passport = require('./utils/pass');
 const cats = require("./routes/catRoute");
 const users = require("./routes/userRoute");
 const login = require('./routes/authRoute');
+const logout = require('./routes/authRoute');
+
 const port = 3000;
 
 app.use(cors());
@@ -18,6 +20,8 @@ app.use(bodyParser.json());
 app.use("/cat", cats);
 app.use("/user", users);
 app.use('/auth/login', login);
+app.use('/auth/logout', logout);
+
 
 app.get('/', (req, res) => {
   res.send('Home');

@@ -23,6 +23,13 @@ const login = (req, res) => {
   })(req, res);
 };
 
+
+const logout = (req, res) => {
+  console.log("logut");
+  req.logOut();
+  res.redirect('/'); //Can fire before session is destroyed?
+}
+
 module.exports = {
-  login,
+  login, logout,
 };
