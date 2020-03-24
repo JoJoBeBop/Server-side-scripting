@@ -16,6 +16,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 
 app.use("/cat", cats);
 app.use("/user", users);
