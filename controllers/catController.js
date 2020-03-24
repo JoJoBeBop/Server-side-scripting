@@ -13,7 +13,12 @@ const cat_get = (req, res) => {
   res.json(cat)
 };
 
+const cat_post = (req, res) => {
+
+};
+
 module.exports = {
   cat_list_get,
   cat_get,
-}
+  cat_post,
+};

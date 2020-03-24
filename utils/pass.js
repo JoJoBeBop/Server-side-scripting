@@ -1,7 +1,12 @@
 'use strict';
-const passport = require('passport');
+
 const Strategy = require('passport-local').Strategy;
 const userModel = require('../models/userModel');
+
+const passport = require('passport');
+const passportJWT = require('passport-jwt');
+const JWTStrategy = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 
 // fake database: ****************
 const users = [
@@ -32,12 +37,10 @@ const getUser = (id) => {
 
 // *****************
 
-// serialize: store user id in session
 passport.serializeUser((id, done) => {
   done(null, id);
 });
 
-// deserialize: get user id from session and get all user data
 passport.deserializeUser(async (id, done) => {
   const user = getUser(id);
   done(null, user)
@@ -69,6 +72,39 @@ passport.use(new Strategy(
     } catch (err) {
       return done(err);
     }
+  }));
+
+/*Ilkkas version, no async await*/
+/*passport.use(new Strategy(
+  (username, password, done) => {
+    try {
+      const user = userModel.getUserLogin(username);
+      console.log('Local strategy', user); // result is binary row
+      if (user === undefined) {
+        return done(null, false, {message: 'Incorrect email.'});
+      }
+      if (user.password !== password) {
+        return done(null, false, {message: 'Incorrect password.'});
+      }
+      return done(null, {...user}, {message: 'Logged In Successfully'});
+    } catch (err) {
+      return done(err);
+    }
+  }));*/
+
+passport.use(new JWTStrategy({
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    secretOrKey: "asdasdasd",
+  },
+  (jwtPayload, done) => {
+    console.log(jwtPayload + " payload");
+    const user = userModel.getUser(jwtPayload.id);
+    console.log("pl user" + user);
+    if (user) {
+    return done(null, user);
+  } else {
+    return done(null, false)
+  }
   }));
 
 module.exports = passport;

@@ -4,8 +4,8 @@ const cors = require("cors");
 const app = express();
 const bodyParser = require('body-parser');
 const passport = require('./utils/pass');
-const cats = require("./routes/catRoute");
-const users = require("./routes/userRoute");
+const catRoute = require("./routes/catRoute");
+const userRoute = require("./routes/userRoute");
 const login = require('./routes/authRoute');
 const logout = require('./routes/authRoute');
 
@@ -19,10 +19,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.use("/cat", cats);
-app.use("/user", users);
+/*app.use("/cat", catRoute);
+app.use("/user", userRoute);*/
 app.use('/auth/login', login);
 app.use('/auth/logout', logout);
+
+app.use("/cat", passport.authenticate("jwt", {session: false}), catRoute);
+app.use("/user",passport.authenticate("jwt", {session: false}), userRoute);
 
 
 app.get('/', (req, res) => {

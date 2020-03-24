@@ -21,6 +21,9 @@ router.post('/upload', upload.single('file'), (req, res) => {
     res.send(400);
   }
 });
+/*
+router.post('/', upload.single('cat'), catController.cat_post)
+*/
 
 router.get("/", catController.cat_list_get);
 

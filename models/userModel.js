@@ -37,5 +37,5 @@ const getUserLogin = (email) => {
 };
 
 module.exports = {
-  users, getUserLogin
+  users, getUserLogin, getUser
 };

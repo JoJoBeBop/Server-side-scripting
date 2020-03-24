@@ -17,7 +17,7 @@ const login = (req, res) => {
         res.send(err);
       }
       // generate a signed son web token with the contents of user object and return it in the response
-      const token = jwt.sign(user, 'your_jwt_secret');
+      const token = jwt.sign(user, 'asdasdasd');
       return res.json({user, token});
     });
   })(req, res);
@@ -27,7 +27,7 @@ const login = (req, res) => {
 const logout = (req, res) => {
   console.log("logut");
   req.logOut();
-  res.redirect('/'); //Can fire before session is destroyed?
+  res.redirect('/');
 }
 
 module.exports = {
