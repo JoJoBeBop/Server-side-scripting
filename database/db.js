@@ -12,4 +12,8 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
+/*console.log(process.env.DB_USER);
+console.log(process.env.DB_PASS);
+console.log(process.env.DB_NAME);*/
+
 module.exports = pool;
