@@ -18,7 +18,6 @@ app.use(express.urlencoded());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
 /*app.use("/cat", catRoute);
 app.use("/user", userRoute);*/
 app.use('/auth/login', login);
