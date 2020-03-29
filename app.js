@@ -9,6 +9,9 @@ const userRoute = require("./routes/userRoute");
 const login = require('./routes/authRoute');
 const logout = require('./routes/authRoute');
 
+
+/*STUFF TESTING*/
+
 const port = 3000;
 
 app.use(cors());
